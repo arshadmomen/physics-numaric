@@ -1,3 +1,4 @@
 *.o
 *.Po
 *.out
+lapack.*
