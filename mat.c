@@ -4,8 +4,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define MATSIZE 5
-#define RAND_RANGE 100
+#define MATSIZE 100
+#define RAND_RANGE 10
 
 double complex mat[MATSIZE][MATSIZE];
 
@@ -40,11 +40,36 @@ void print_mat()
     puts("\n");
   }
 }
-
+void lapacke_wrapper()
+{
+  int i,j;
+  char JOBZ = 'V';
+  char UPLO = 'U';
+  int N = MATSIZE;
+  int LDA = MATSIZE;
+  double W[MATSIZE];
+  double complex WORK[2 * MATSIZE];
+  double complex A[MATSIZE * MATSIZE];
+  int LWORK = 2 * MATSIZE;
+  double RWORK[ 3 * MATSIZE -2];
+  int INFO;
+  for (i = 0; i < MATSIZE; i++)
+    for(j = 0; j < MATSIZE; j++)
+      A[(j + MATSIZE * i)] = mat[j][i];
+  zheev_(&JOBZ, &UPLO, &N, A, &LDA, W, WORK, &LWORK, RWORK, &INFO);
+  if (!INFO)
+  {
+    printf("OK\n");
+    for(i = 0; i < MATSIZE; i++)
+      printf("%f\n", W[i]);
+  }
+  else printf("Not OK\n");
+}
 int main()
 {
   srand(time(NULL));
   gen_mat();
   print_mat();
+  lapacke_wrapper();
   return 0;
 }
