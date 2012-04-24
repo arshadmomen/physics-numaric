@@ -2,13 +2,15 @@
 #include <stdlib.h>
 #include <gsl/gsl_histogram.h>
 
+#define EIGENDATAFILE "eval.dat"
+
 int
 main (int argc, char **argv)
 {
   double a, b;
   size_t n;
   FILE * fp;
-  fp = fopen("eval.dat","r");
+  fp = fopen(EIGENDATAFILE,"r");
 
   if (argc != 4)
     {

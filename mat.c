@@ -6,6 +6,7 @@
 
 #define MATSIZE 100
 #define RAND_RANGE 10
+#define EIGENDATAFILE "eval.dat"
 
 double complex mat[MATSIZE][MATSIZE];
 
@@ -54,7 +55,7 @@ void lapacke_wrapper()
   int LWORK = 2 * MATSIZE;
   double RWORK[ 3 * MATSIZE -2];
   int INFO;
-  fp = fopen("eval.dat","w");
+  fp = fopen(EIGENDATAFILE,"w");
   for (i = 0; i < MATSIZE; i++)
     for(j = 0; j < MATSIZE; j++)
       A[(j + MATSIZE * i)] = mat[j][i];
