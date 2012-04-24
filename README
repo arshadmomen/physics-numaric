@@ -1,0 +1,11 @@
+1.Compile with : make
+2.Run : ./mat.out
+3.Inspect eigen values : cat eval.dat
+4.Create histogram with the eigenvalues : ./hist.out [lower range][upper range] [number of bins] 
+for example :
+              $./hist.out -500 700 1200 > hist.dat
+5.Process the histogram :
+              $awk '{print $1, $3; print $2 ,$3}' | graph -T X
+(utiliy graph is included in gnu plotutils)
+
+6. File any issues or bugs in https://github.com/aftnix/physics-numaric/issues
