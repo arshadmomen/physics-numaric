@@ -1,4 +1,4 @@
 *.o
 *.Po
 *.out
-lapack.*
+*.dat

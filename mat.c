@@ -42,6 +42,7 @@ void print_mat()
 }
 void lapacke_wrapper()
 {
+  FILE * fp;
   int i,j;
   char JOBZ = 'V';
   char UPLO = 'U';
@@ -53,6 +54,7 @@ void lapacke_wrapper()
   int LWORK = 2 * MATSIZE;
   double RWORK[ 3 * MATSIZE -2];
   int INFO;
+  fp = fopen("eval.dat","w");
   for (i = 0; i < MATSIZE; i++)
     for(j = 0; j < MATSIZE; j++)
       A[(j + MATSIZE * i)] = mat[j][i];
@@ -61,7 +63,9 @@ void lapacke_wrapper()
   {
     printf("OK\n");
     for(i = 0; i < MATSIZE; i++)
-      printf("%f\n", W[i]);
+    {
+      fprintf(fp,"%g\n", W[i]);
+    }
   }
   else printf("Not OK\n");
 }
