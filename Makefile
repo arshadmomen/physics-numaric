@@ -14,4 +14,4 @@ hist.o:hist.c
 	$(CC) $(CFLAGS) hist.c
 
 clean:
-	rm -rf *.o *.out
+	rm -rf *.o *.out *.dat
